@@ -7,3 +7,7 @@ from .models import Product
 class IndexView(ListView):
     model = Product
     template_name = 'core/index.html'
+
+class CatalogView(ListView):
+    model = Product
+    template_name = 'core/index.html'
