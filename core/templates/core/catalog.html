@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<body>
+<div class="container">
+  <div class="row align-items-md-stretch">
+    {% for category in categories %}
+      <div class="col-md-4">
+        <div class="h-100 p-5 bg-light border rounded-3">
+          <h2>{{ category.1 }}</h2>
+          <button class="btn btn-outline-secondary" type="button">See</button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+</main>
+
+
+
+
+    <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+      
+</body>
+
+{% endblock content %}
