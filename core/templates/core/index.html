@@ -8,7 +8,7 @@
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal">{{ object_list.first.name }}</h1>
       <p class="lead fw-normal">{{ object_list.first.short_description }}</p>
-      <a class="btn btn-outline-secondary" href="#">Buy now</a>
+      <a class="btn btn-outline-secondary" href="{% url 'core:product' pk=object_list.first.id %}">Buy now</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -26,6 +26,7 @@
                   <strong class="d-inline-block mb-2 text-primary">{{ product.get_tag_display }}</strong>
                   <h3 class="mb-0">{{ product.name }}</h3>
                   <p class="card-text mb-auto">{{ product.short_description }}</p>
+                  <a href="{% url 'core:product' pk=product.id %}" class="stretched-link">Find more</a>
                 </div>
                 <div class="col-auto d-none d-lg-block">
                   <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>

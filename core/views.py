@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, DetailView
 from .models import Product, CATEGORIES
 
 # Create your views here.
@@ -17,3 +17,6 @@ class CatalogView(TemplateView):
         context['categories'] = CATEGORIES
         return context
 
+class ProductView(DetailView):
+    model = Product
+    template_name = 'core/product.html'
