@@ -23,3 +23,6 @@ class ProductView(DetailView):
         context = super().get_context_data(**kwargs)
         context['related_products'] = Product.objects.all().exclude(id=self.object.id)[:4]
         return context
+
+class AboutView(TemplateView):
+    template_name = 'core/about.html'
