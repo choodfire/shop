@@ -26,3 +26,6 @@ class ProductView(DetailView):
 
 class AboutView(TemplateView):
     template_name = 'core/about.html'
+
+class FAQView(TemplateView):
+    template_name = 'core/faq.html'
