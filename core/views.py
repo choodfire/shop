@@ -1,7 +1,11 @@
+from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.views.generic import ListView, TemplateView, DetailView
+from django.views.generic import ListView, TemplateView, DetailView, CreateView
+
+from .forms import RegistrationForm
 from .models import Product, CATEGORIES, Store
 from mixins.mixins import TitleMixin
 
@@ -51,8 +55,15 @@ class LoginView(TitleMixin, LoginView):
     def get_success_url(self):
         return reverse('core:index')
 
-class SignupView(TitleMixin, TemplateView):
+class SignupView(TitleMixin, CreateView):
+    form_class = RegistrationForm
     template_name = 'core/signup.html'
+    title = "Sign up"
 
-    def get_success_url(self):
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return HttpResponseRedirect(self.get_successful_url())
+
+    def get_successful_url(self):
         return reverse('core:index')
