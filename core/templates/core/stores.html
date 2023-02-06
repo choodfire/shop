@@ -5,7 +5,6 @@
     {% for adr in object_list %}
         <div class="container">
             <div class="card mb-3">
-{#              <img src="{{ adr.mapImage.url }}" class="card-img-top" alt="...">#}
               <a href="{{ adr.link }}" target="_blank" class="card-img-top"><img src="{{ adr.mapImage.url }}"></a>
               <div class="card-body">
                 <h5 class="card-title">{{ adr.address }}</h5>

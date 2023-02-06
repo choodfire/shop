@@ -5,5 +5,4 @@ from .models import Store
 class StoreAdmin(admin.ModelAdmin):
     list_display = ('address',)
 
-
 admin.site.register(Store, StoreAdmin)
