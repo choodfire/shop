@@ -49,7 +49,7 @@ class StoresView(TitleMixin, ListView):
     title = 'Stores'
     template_name = 'core/stores.html'
 
-class LoginView(TitleMixin, LoginView):
+class MyLoginView(TitleMixin, LoginView):
     template_name = 'core/login.html'
 
     def get_success_url(self):
