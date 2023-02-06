@@ -24,6 +24,9 @@ class Product(models.Model):
         verbose_name = "Product"
         verbose_name_plural = "Products"
 
+    def __str__(self):
+        return self.name
+
 class Store(models.Model):
     address = models.CharField(null=False, blank=False, max_length=300)
     mapImage = models.ImageField(null=False, blank=False, upload_to="shopMapImages")
