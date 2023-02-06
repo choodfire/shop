@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, TemplateView, DetailView
 from .models import Product, CATEGORIES
+from store.models import Store
 
 
 class IndexView(ListView):
@@ -29,3 +30,7 @@ class AboutView(TemplateView):
 
 class FAQView(TemplateView):
     template_name = 'core/faq.html'
+
+class ShopsView(ListView):
+    model = Store
+    template_name = 'core/stores.html'

@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<body>
+    {% for adr in object_list %}
+        <div class="container">
+            <div class="card mb-3">
+{#              <img src="{{ adr.mapImage.url }}" class="card-img-top" alt="...">#}
+              <a href="{{ adr.link }}" target="_blank" class="card-img-top"><img src="{{ adr.mapImage.url }}"></a>
+              <div class="card-body">
+                <h5 class="card-title">{{ adr.address }}</h5>
+                <p class="card-text">{{ adr.description }}</p>
+              </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="container">
+            <h1 class="display-1">No stores, we will open soon</h1>
+        </div>
+    {% endfor %}
+</body>
+
+{% endblock content %}
