@@ -1,4 +1,6 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render
+from django.urls import reverse
 from django.views.generic import ListView, TemplateView, DetailView
 from .models import Product, CATEGORIES, Store
 from mixins.mixins import TitleMixin
@@ -42,3 +44,15 @@ class StoresView(TitleMixin, ListView):
     model = Store
     title = 'Stores'
     template_name = 'core/stores.html'
+
+class LoginView(TitleMixin, LoginView):
+    template_name = 'core/login.html'
+
+    def get_success_url(self):
+        return reverse('core:index')
+
+class SignupView(TitleMixin, TemplateView):
+    template_name = 'core/signup.html'
+
+    def get_success_url(self):
+        return reverse('core:index')

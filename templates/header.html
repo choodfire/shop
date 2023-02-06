@@ -151,8 +151,10 @@
         </form>
 
         <div class="text-end">
-          <button type="button" class="btn btn-outline-light me-2">Login</button>
-          <button type="button" class="btn btn-warning">Sign-up</button>
+{#          <button type="button" href="{% url 'core:login' %}" class="btn btn-outline-light me-2">Login</button>#}
+          <a class="btn btn-outline-light me-2" href="{% url 'core:login' %}"  role="button">Log in</a>
+          <a class="btn btn-warning" href="{% url 'core:signup' %}"  role="button">Sign up</a>
+{#          <button type="button" class="btn btn-warning">Sign-up</button>#}
         </div>
       </div>
     </div>
