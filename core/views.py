@@ -1,14 +1,11 @@
 from django.contrib.auth import login
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView, DetailView, CreateView
-
 from .forms import RegistrationForm
 from .models import Product, CATEGORIES, Store
 from mixins.mixins import TitleMixin
-
 
 class IndexView(TitleMixin, ListView):
     model = Product
