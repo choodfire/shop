@@ -1,5 +1,5 @@
 from django.contrib.auth import login
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -66,4 +66,8 @@ class SignupView(TitleMixin, CreateView):
         return HttpResponseRedirect(self.get_successful_url())
 
     def get_successful_url(self):
+        return reverse('core:index')
+
+class MyLogoutView(LogoutView):
+    def get_success_url(self):
         return reverse('core:index')
