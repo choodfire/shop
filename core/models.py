@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -32,3 +34,12 @@ class Store(models.Model):
     mapImage = models.ImageField(null=False, blank=False, upload_to="shopMapImages")
     link = models.CharField(null=False, blank=False, max_length=1000)
     description = models.CharField(null=False, blank=False, max_length=500)
+
+
+class CustomUser(User):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    name = models.CharField(max_length=40, unique=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures', default='default.jpg', blank=True, null=True)
+
+    REQUIRED_FIELDS = ('user',)
+    USERNAME_FIELD = 'name'
