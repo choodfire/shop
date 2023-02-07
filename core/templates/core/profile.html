@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<body>
+    <!-- Header - set the background image for the header in the line below-->
+    <header class="py-5 bg-image-full" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1600x900')">
+        <div class="text-center my-5">
+            <img class="img-fluid rounded-circle mb-4" width="150px" src="{{ request.user.profile_picture.url }}" alt="..." />
+            <h1 class="text-white fs-3 fw-bolder">{{ request.user.username }}</h1>
+            <p class="text-white-50 mb-0">Profile page</p>
+        </div>
+    </header>
+
+    <form method="POST" action="{% url 'core:profile' %}">
+      {% csrf_token %}
+      {{ Nameform.as_p }}
+      <input type="submit" value="Change name" />
+    </form>
+
+    <form method="POST" action="">
+      {% csrf_token %}
+      {{ PFPform.as_p }}
+      <input type="submit" value="Change profile picture" />
+    </form>
+
+</body>
+
+{% endblock content %}

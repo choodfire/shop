@@ -18,7 +18,7 @@ admin.site.register(Store, StoreAdmin)
 
 
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('username',)
 
 
 admin.site.register(CustomUser, CustomUserAdmin)

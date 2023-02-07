@@ -36,8 +36,8 @@ class Store(models.Model):
 
 
 class CustomUser(AbstractUser):
-    name = models.CharField(max_length=40, unique=True)
+    username = models.CharField(max_length=40, unique=True)
     profile_picture = models.ImageField(upload_to='profile_pictures', default='default.jpg', blank=True, null=True)
 
-    def __str__(self):
-        return self.name
+    # def __str__(self):
+    #     return self.

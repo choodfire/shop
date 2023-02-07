@@ -3,8 +3,8 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView, DetailView, CreateView
-from .forms import RegistrationForm
-from .models import Product, CATEGORIES, Store
+from .forms import RegistrationForm, UserChangePFPForm, UserChangeNameForm
+from .models import Product, CATEGORIES, Store, CustomUser
 from mixins.mixins import TitleMixin
 
 class IndexView(TitleMixin, ListView):
@@ -68,3 +68,23 @@ class SignupView(TitleMixin, CreateView):
 class MyLogoutView(LogoutView):
     def get_success_url(self):
         return reverse('core:index')
+
+class ProfileView(TitleMixin, TemplateView):
+    template_name = 'core/profile.html'
+    title = 'Profile'
+
+    def post(self, form):
+        new_username = self.request.POST['username']  # add picture
+        self.request.user.username = new_username
+        self.request.user.save()
+        return HttpResponseRedirect(self.get_successful_url())
+
+    def get_successful_url(self):
+        return reverse('core:profile')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['PFPform'] = UserChangePFPForm
+        context['Nameform'] = UserChangeNameForm
+        
+        return context
