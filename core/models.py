@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -38,6 +39,10 @@ class Store(models.Model):
 class CustomUser(AbstractUser):
     username = models.CharField(max_length=40, unique=True)
     profile_picture = models.ImageField(upload_to='profile_pictures', default='default.jpg', blank=True, null=True)
+
+    def get_absolute_url(self):
+        # from django.urls import reverse
+        return reverse('core:profile')
 
     # def __str__(self):
     #     return self.

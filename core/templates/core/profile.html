@@ -11,16 +11,10 @@
         </div>
     </header>
 
-    <form method="POST" action="{% url 'core:profile' %}">
+    <form method="POST" action="{% url 'core:profile' %}" enctype="multipart/form-data">
       {% csrf_token %}
-      {{ Nameform.as_p }}
+      {{ form.as_p }}
       <input type="submit" value="Change name" />
-    </form>
-
-    <form method="POST" action="">
-      {% csrf_token %}
-      {{ PFPform.as_p }}
-      <input type="submit" value="Change profile picture" />
     </form>
 
 </body>
