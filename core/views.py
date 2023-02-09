@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import ListView, TemplateView, DetailView, CreateView, UpdateView
 from .forms import RegistrationForm, UserChangePFPForm, UserChangeNameForm
-from .models import Product, CATEGORIES, Store, CustomUser
+from .models import Product, Store, CustomUser, Category
 from mixins.mixins import TitleMixin
 
 class IndexView(TitleMixin, ListView):
@@ -12,14 +12,10 @@ class IndexView(TitleMixin, ListView):
     title = 'Main page'
     template_name = 'core/index.html'
 
-class CatalogView(TitleMixin, TemplateView):
+class CatalogView(TitleMixin, ListView):
     template_name = 'core/catalog.html'
     title = 'Catalog'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['categories'] = CATEGORIES
-        return context
+    model = Category
 
 class ProductView(TitleMixin, DetailView):
     model = Product

@@ -3,3 +3,6 @@ db.sqlite3
 media
 venv
 __pycache__/
+migrations/
+/core/migrations/
+/core/__pycache__/

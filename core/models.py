@@ -2,16 +2,12 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
-# Create your models here.
 
-CATEGORIES = [
-        ('ELECTR', 'Electronics'),
-        ('CLOTH', 'Clothes'),
-        ('SPORT', 'Sports'),
-        ('PET', 'Pet supplies'),
-        ('SOFTW', 'Software'),
-        ('HEALTH', 'Health'),
-    ]
+class Category(models.Model):
+    name = models.CharField(null=False, blank=False, max_length=120)
+
+    def __str__(self):
+        return self.name
 
 class Product(models.Model):
     name = models.CharField(null=False, blank=False, max_length=150, default="No name")
@@ -19,7 +15,7 @@ class Product(models.Model):
     long_description = models.TextField(null=False, blank=False, max_length=1000, default="No description")  # for product in its card
     price = models.IntegerField(null=False, blank=False, default=0)
     image = models.ImageField(null=False, blank=False, upload_to="images")
-    category = models.CharField(null=False, blank=False, choices=CATEGORIES, max_length=120)  # category
+    category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)  # category
 
     class Meta:
         ordering = ['-id']
@@ -41,8 +37,8 @@ class CustomUser(AbstractUser):
     profile_picture = models.ImageField(upload_to='profile_pictures', default='default.jpg', blank=True, null=True)
 
     def get_absolute_url(self):
-        # from django.urls import reverse
         return reverse('core:profile')
 
-    # def __str__(self):
-    #     return self.
+    def __str__(self):
+        return self.username
+
