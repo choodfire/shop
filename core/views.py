@@ -7,15 +7,18 @@ from .forms import RegistrationForm, UserChangePFPForm, UserChangeNameForm
 from .models import Product, Store, CustomUser, Category
 from mixins.mixins import TitleMixin
 
+
 class IndexView(TitleMixin, ListView):
     model = Product
     title = 'Main page'
     template_name = 'core/index.html'
 
+
 class CatalogView(TitleMixin, ListView):
     template_name = 'core/catalog.html'
     title = 'Catalog'
     model = Category
+
 
 class ProductView(TitleMixin, DetailView):
     model = Product
@@ -29,24 +32,29 @@ class ProductView(TitleMixin, DetailView):
         context['related_products'] = Product.objects.all().exclude(id=self.object.id)[:4]
         return context
 
+
 class AboutView(TitleMixin, TemplateView):
     template_name = 'core/about.html'
     title = 'About'
 
+
 class FAQView(TitleMixin, TemplateView):
     template_name = 'core/faq.html'
     title = 'Frequently asked questions'
+
 
 class StoresView(TitleMixin, ListView):
     model = Store
     title = 'Stores'
     template_name = 'core/stores.html'
 
+
 class MyLoginView(TitleMixin, LoginView):
     template_name = 'core/login.html'
 
     def get_success_url(self):
         return reverse('core:index')
+
 
 class SignupView(TitleMixin, CreateView):
     form_class = RegistrationForm
@@ -61,9 +69,11 @@ class SignupView(TitleMixin, CreateView):
     def get_successful_url(self):
         return reverse('core:index')
 
+
 class MyLogoutView(LogoutView):
     def get_success_url(self):
         return reverse('core:index')
+
 
 class ProfileView(TitleMixin, UpdateView):
     template_name = 'core/profile.html'
@@ -78,3 +88,16 @@ class ProfileView(TitleMixin, UpdateView):
     def get_success_url(self):
         return reverse('core:profile')
 
+
+class CategoryCatalogView(TitleMixin, ListView):
+    template_name = 'core/categorycatalog.html'
+    model = Product
+    title = "add category title"
+
+    def get_queryset(self):
+        qs = self.model.objects.all()
+        if self.kwargs.get('slug'):
+            slug = self.kwargs['slug']
+            qs = qs.filter(category__slug=slug)
+
+        return qs

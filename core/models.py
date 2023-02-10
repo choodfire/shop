@@ -5,6 +5,7 @@ from django.urls import reverse
 
 class Category(models.Model):
     name = models.CharField(null=False, blank=False, max_length=120)
+    slug = models.CharField(null=False, blank=False, max_length=120, default="none")
 
     def __str__(self):
         return self.name
@@ -41,4 +42,3 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username
-

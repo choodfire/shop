@@ -8,8 +8,7 @@
       <div class="col-md-4">
         <div class="h-100 p-5 bg-light border rounded-3">
           <h2>{{ category.name }}</h2>
-{#          <button class="btn btn-outline-secondary" type="button">See</button>#}
-          <a class="btn btn-outline-secondary" href="{% url 'core:category_catalog' slug=category.slug %}" role="button">See</a>
+          <button class="btn btn-outline-secondary" type="button">See</button>
         </div>
       </div>
     {% endfor %}
